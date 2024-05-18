@@ -1,0 +1,4 @@
+__pycache__/
+proxies.txt
+db.sqlite3
+proxy_list.json
