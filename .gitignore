@@ -1,4 +1,11 @@
-__pycache__/
+.env
+env/
+
+*.sqlite3
+*.json
+
 proxies.txt
-db.sqlite3
-proxy_list.json
+proxies/proxy_list.json
+
+__pycache__/
+tempCodeRunnerFile.py

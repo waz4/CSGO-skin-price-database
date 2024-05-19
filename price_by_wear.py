@@ -1,7 +1,6 @@
 import requests, json, time
-from CSGO_market import get_all_results
-from Skins_DB import Skins_DB
-
+from src.CSGO_market import get_all_results
+from src.Skins_DB import Skins_DB
  
 def save_json(filename: str, json_data: dict):
     with open(filename, "w+") as file:
@@ -29,5 +28,5 @@ if __name__ == "__main__":
 
     wears = db.get_wears()
     
-    proxy_list = read_json("../proxy_list.json")["results"]
+    proxy_list = read_json("proxy_list.json")["results"]
     proxy_list = [f"{proxy['username']}:{proxy['password']}@{proxy['proxy_address']}:{proxy['port']}" for proxy in proxy_list]

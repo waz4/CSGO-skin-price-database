@@ -1,7 +1,7 @@
 import requests, json, os
-from Skins_DB import Skins_DB
+from src.Skins_DB import Skins_DB
 from sqlite3 import IntegrityError
-from CSGO_market import get_market_filters
+from src.CSGO_market import get_market_filters
 
 def read_json(path_to_file: str):
     with open(path_to_file, "r") as file:

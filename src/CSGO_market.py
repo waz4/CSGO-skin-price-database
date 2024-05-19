@@ -24,7 +24,7 @@ def get_market_filters(appid: int = 730):
 def is_response_valid(response: str):
     return response != None and "results" in response and len(response["results"]) # Check if response if empty
 
-def make_request(offset: int, user_agent: str = "", stattrack: bool = False, weapons: list = [], wears: list = [],rarities: list = [], qualities: list = [], proxy: str = "", timeout = REQUEST_TIMEOUT, collection: str = ""):
+def make_request(offset: int, user_agent: str = "", stattrack: bool = False, weapons: list = [], wears: list = [], collections: list = [], rarities: list = [], qualities: list = [], proxy: str = "", timeout = REQUEST_TIMEOUT):
 
     if len(proxy):
         proxy_dict = {
@@ -59,8 +59,8 @@ def make_request(offset: int, user_agent: str = "", stattrack: bool = False, wea
     
     if isinstance(rarities, list) and len(rarities):
         params["category_730_Rarity[]"] = rarities
-    if isinstance(collection, list) and len(collection):
-        params["category_730_ItemSet[]"] = collection
+    if isinstance(collections, list) and len(collections):
+        params["category_730_ItemSet[]"] = collections
     if isinstance(wears, list) and len(wears):
         params["category_730_Exterior[]"] = wears
     if isinstance(weapons, list) and len(weapons):
@@ -95,7 +95,7 @@ def make_request(offset: int, user_agent: str = "", stattrack: bool = False, wea
 
     raise "Ah Oh why am I here"
 
-def get_all_results(output_path: str, output_filename: str, proxy_list: list = [], weapons: list = [], user_agent: str = "I love sushi", stattrack: bool = False, wears: list = [],rarities: list = [], qualities: list = [], proxy: str = "", timeout = REQUEST_TIMEOUT, collection: str = ""):
+def get_all_results(output_path: str, output_filename: str, proxy_list: list = [], weapons: list = [], user_agent: str = "I love sushi", stattrack: bool = False, collections: list = [],  wears: list = [],rarities: list = [], qualities: list = [], proxy: str = "", timeout = REQUEST_TIMEOUT):
     offset = 0
     total_count = 1
     proxy_index = 0
@@ -105,7 +105,7 @@ def get_all_results(output_path: str, output_filename: str, proxy_list: list = [
 
         print(f"Proxy: {proxy}")
         
-        status_code, response = make_request(offset=offset, proxy=proxy, wears=wears, weapons=weapons, collection=collection, rarities=rarities, qualities=qualities, timeout=timeout)
+        status_code, response = make_request(offset=offset, proxy=proxy, wears=wears, weapons=weapons, collections=collections, rarities=rarities, qualities=qualities, timeout=timeout)
 
         print(f"Status Code: {status_code}")
 
@@ -118,6 +118,9 @@ def get_all_results(output_path: str, output_filename: str, proxy_list: list = [
             save_json(output_path + filename, response)
 
             offset += 100
+        elif status_code == 404:
+            print(f"Response: {response}")
+            print(f"Used proxy: {proxy}")
         elif status_code != 400:
             proxy_index = (proxy_index + 1) % len(proxy_list)
         time.sleep(2)

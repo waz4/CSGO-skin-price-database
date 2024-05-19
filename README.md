@@ -11,7 +11,7 @@ This project collects data from the Steam Market, allowing users to store the pr
 
 TODO: add video of tool in action
 
-## Python requirements
+## Requirements
  - Python3.x
  - SQLite3
  - Requests
@@ -34,8 +34,15 @@ pip install -r requirements.txt
 ## Usage
 Simply run the build_database.py to go throught the whole process of creating and fetching the data to populate the database
 ```bash
-python3 build_database.py
+python3 build_database.py data_base_filename
 ```
+
+## Pricers
+Pricers are used to get the market prices for all the skins, these can filter and subdivide the data which can be usefull for precision.
+
+If the proxy list is very small choose a pricer that divides the data more. Because if the skins price changes substancially during the pricing the skin might be moved to a diferent page of the steam requests and be lost. 
+
+This behaviour can be check for when running  ```DB_loader.load_prices()``` in which it will count how many repeated skins. Each repeated skin means one skin changed price during the queries and swaped place with a skin that was previously received.
 
 ## Proxy Recommendations
 To avoid being blocked by the Steam Market due to excessive requests, it is highly recommended to use a list of proxies. This will help distribute the requests and reduce the amount of times your IP address put on cooldown.
