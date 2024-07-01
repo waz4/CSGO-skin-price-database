@@ -16,10 +16,10 @@ market_filters_filename = "app_filters.json"
 proxy_list_filename = "proxies.txt"
 
 if (len(sys.argv) < 2):
-    print(f"Usage: {argv[0]} database_output_name")
+    print(f"Usage: {sys.argv[0]} database_output_name")
     exit()
 
-bath_to_database = sys.argv[1]
+path_to_database = sys.argv[1]
 
 db = Skins_DB(path_to_database)
 

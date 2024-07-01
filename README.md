@@ -45,7 +45,7 @@ If the proxy list is very small choose a pricer that divides the data more. Beca
 This behaviour can be check for when running  ```DB_loader.load_prices()``` in which it will count how many repeated skins. Each repeated skin means one skin changed price during the queries and swaped place with a skin that was previously received.
 
 ## Proxy Recommendations
-To avoid being blocked by the Steam Market due to excessive requests, it is highly recommended to use a list of proxies. This will help distribute the requests and reduce the amount of times your IP address put on cooldown.
+To avoid being blocked by the Steam Market due to excessive requests, it is highly recommended to use a list of proxies. This will help distribute the requests and reduce the amount of times your IP address gets put on cooldown.
 
 1. Create a file named `proxies.txt` in the project directory.
 2. Add a list of proxy addresses (one per line) to `proxies.txt`.
